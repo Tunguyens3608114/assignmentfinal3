@@ -1,0 +1,1 @@
+export const API_URL = 'http://rmit.chickenkiller.com:8080';
