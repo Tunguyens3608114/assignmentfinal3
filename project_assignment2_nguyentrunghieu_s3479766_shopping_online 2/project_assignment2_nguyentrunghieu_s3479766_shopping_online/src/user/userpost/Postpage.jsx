@@ -1,55 +1,55 @@
 import React from 'react';
-import Productlistview from '../userproduct/Productlistview.jsx';
-import Productgridview from '../userproduct/Productgridview.jsx';
+import Postlistview from '../userpost/Postlistview.jsx';
+import Postgridview from '../userpost/Postgridview.jsx';
 
 import { connect } from 'react-redux';
 
 
 import {
- actGetProductRequest, actFetchProductsRequest,
-   } from './../../action/productsAction';
+  actGetPostRequest, actFetchPostsRequest,
+   } from '../../action/postsaction';
 
    import {
-    actFetchCategoriesRequest,
-    } from './../../action/categoriesaction';  
+    actFetchProjectsRequest,
+    } from '../../action/projectsaction';  
 
 
- class Productpage extends React.Component {
+ class Postpage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showItems: props.products, 
+            showItems: props.posts, 
             showfilter: 'gridview' 
         
     }
 
     }
     componentDidMount(){
-        this.props.fetchCategories()
-        this.props.fetchProducts()
+        this.props.fetchProjects()
+        this.props.fetchPosts()
         
     }
 
     componentWillReceiveProps(nextprops) {
-        this.setState({ showItems: nextprops.products });
+        this.setState({ showItems: nextprops.posts });
     }
 
 
-    filterbycategory(id) {
-        let getidcategory = this.props.products.filter((product) => product.productType === id);
-        this.setState({ showItems: getidcategory });
+    filterbyproject(id) {
+        let getidproject = this.props.posts.filter((post) => post.postType === id);
+        this.setState({ showItems: getidproject });
     }
 
 
     filterprice(filter) {
         if (filter === 'LOW_PRICE') {
-            let lowprice = this.props.products.sort(function (price_a, price_b) {
+            let lowprice = this.props.posts.sort(function (price_a, price_b) {
                 return parseFloat(price_a.price) - parseFloat(price_b.price);
             });
             this.setState({ showItems: lowprice });
         }
         else if (filter === 'HIGH_PRICE') {
-            let highprice = this.props.products.sort(function (price_a, price_b) {
+            let highprice = this.props.posts.sort(function (price_a, price_b) {
                 return parseFloat(price_b.price) - parseFloat(price_a.price);
             });
             this.setState({ showItems: highprice });
@@ -82,18 +82,18 @@ import {
                             <div className='card-body'>
                                 <div className='card-header'>
                                     <h5 className='card-title'>
-                                        <a data-toggle='collapse' href='#myCategory'>
-                                            Category
+                                        <a data-toggle='collapse' href='#myProject'>
+                                            Project
 							            </a>
                                     </h5>
                                 </div>
-                                <div id='myCategory'
+                                <div id='myProject'
                                  className='collapse in' >
                                     <ul className='list-group'>
-                                        {this.props.categories.map((category, index) =>
+                                        {this.props.projects.map((project, index) =>
                                             <li key={index} className='list-group-item'>
-                                                <href className='btn-link' onClick={() => this.filterbycategory(category._id)}>
-                                                    {category.name}
+                                                <href className='btn-link' onClick={() => this.filterbyproject(project._id)}>
+                                                    {project.name}
                                                 </href>
                                             </li>
                                         )}
@@ -109,14 +109,14 @@ import {
                                 <div id='myPrice' className='collapse in' >
                                     <ul className='list-group'>
                                         <li className='list-group-item'>
-                                            <href className='btn-link' onClick={() => this.filterprice('LOW_PRICE')}>
+                                            <div className='btn-link' onClick={() => this.filterprice('LOW_PRICE')}>
                                                 Low Price
-                                            </href>
+                                            </div>
                                         </li>
                                         <li className='list-group-item'>
-                                            <href className='btn-link' onClick={() => this.filterprice('HIGH_PRICE')}>
+                                            <div className='btn-link' onClick={() => this.filterprice('HIGH_PRICE')}>
                                                 High Price
-                                            </href>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -143,18 +143,18 @@ import {
                             </div>
                         <div>
                             {this.state.showfilter === 'listview' ? 
-                            <Productlistview 
+                            <Postlistview 
                                 
                             showItems={this.state.showItems}
-                            categories={this.props.categories}
-                            products = {this.props.products}/>
+                            projects={this.props.projects}
+                            posts = {this.props.posts}/>
                              
                                     
                             :
-                            <Productgridview 
-                            categories={this.props.categories}
+                            <Postgridview 
+                            projects={this.props.projects}
                             showItems={this.state.showItems}
-                            products = {this.props.products}/>
+                            posts = {this.props.posts}/>
                                   
                            }
                            
@@ -170,19 +170,19 @@ import {
 const mapStateToProps = (state) => {
     return {
 
-        categories: state.categories,
-        products: state.products,
+        projects: state.projects,
+        posts: state.posts,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     //dispatch actions by using imported action methods
     return {
-        //dispatch actions for products and categories
-        getProduct: (_id) => { dispatch(actGetProductRequest(_id)); },
-        fetchCategories: () => { dispatch(actFetchCategoriesRequest()) },
-        fetchProducts: () => { dispatch(actFetchProductsRequest()) },
+        //dispatch actions for posts and projects
+        getPost: (_id) => { dispatch(actGetPostRequest(_id)); },
+        fetchProjects: () => { dispatch(actFetchProjectsRequest()) },
+        fetchPosts: () => { dispatch(actFetchPostsRequest()) },
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Productpage);
+export default connect(mapStateToProps,mapDispatchToProps)(Postpage);

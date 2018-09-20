@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const Productpaging = ({currentPage, pages}) => {
+const Postpaging = ({currentPage, pages}) => {
     let prevLink = parseInt(currentPage, 10) - 1;
     let nextLink = parseInt(currentPage, 10) + 1;
     return (
@@ -10,7 +10,7 @@ const Productpaging = ({currentPage, pages}) => {
             <div className='btn-group text-center'>
                        {prevLink > 0 ? // Disable previous page link if showing the first page
                             <NavLink
-                             to={"/Adminproductlistpage/" + prevLink}>Previous</NavLink>
+                             to={"/Adminpostlistpage/" + prevLink}>Previous</NavLink>
                             :
                             <span>Previous</span>
                         }  
@@ -18,7 +18,7 @@ const Productpaging = ({currentPage, pages}) => {
                          &nbsp;  
                         {nextLink <= pages ? // Disable next page link if showing the last page
                             <NavLink
-                             to={"/Adminproductlistpage/" + nextLink}>Next</NavLink>
+                             to={"/Adminpostlistpage/" + nextLink}>Next</NavLink>
                             :
                             <span>Next</span>
                         }
@@ -27,4 +27,4 @@ const Productpaging = ({currentPage, pages}) => {
     )
 };
 
-export default Productpaging;
+export default Postpaging;

@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-import appReducers from './reducers/category/index'
+import appReducers from './reducers/project/index.js'
 
 
 

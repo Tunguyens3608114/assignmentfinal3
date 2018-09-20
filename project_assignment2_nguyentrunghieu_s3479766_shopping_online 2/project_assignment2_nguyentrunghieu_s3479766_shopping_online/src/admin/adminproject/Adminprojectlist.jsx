@@ -1,13 +1,9 @@
 import React from 'react';
-
-import Categorypaging from '../../reducers/paging/Categorypaging';
+import Projectpaging from '../../reducers/paging/Projectpaging';
 import {Link} from 'react-router-dom';
 
-
-
-const Admincategorylist  = ({categories,pages,currentPage, deleteCategory , getCategory}) =>{
-  
-    
+const Adminprojectlist  = ({projects,pages,currentPage, deleteProject , getProject}) =>{
+        console.log('projects: ',projects);
         return (
                         <div className='table table-responsive'>
                             <table className='table table-borderd table-hover'>
@@ -15,29 +11,39 @@ const Admincategorylist  = ({categories,pages,currentPage, deleteCategory , getC
                                     <tr>
                                         <th className='text-center'>ID</th>
                                         <th className='text-center'>Name</th>
+                                        <th className='text-center'>Owner</th>
+                                        <th className='text-center'>Type of Project</th>
+                                        <th className='text-center'>Total Area</th>
+                                        <th className='text-center'>Start Year</th>
+                                        <th className='text-center'>End Year</th>
                                         <th className='text-center'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     {categories.map((category, index) =>
+                                     {projects.map((project, index) =>
                                     <tr className='text-center' key={index}>
-                                            <td>{category._id}</td>
-                                            <td>{category.name}</td>
-                                            
+                                            <td>{project._id}</td>
+                                            <td>{project.name}</td>
+                                            <td>{project.username}</td>
+                                            <td>{project.typeOfProject}</td>
+                                            <td>{project.totalArea}</td>
+                                            <td>{project.startYear}</td>
+                                            <td>{project.endYear}</td>                                        
                                         <td>
                                             <Link 
-                                                to = "/Adminhome"
+                                                to = "/Adminprojectlistpage"
                                                 className='btn btn-danger'
-                                                onClick={() =>deleteCategory(category._id)}>
+                                                onClick={() =>deleteProject(project._id)}>
                                                 
                                                 <span className='fa fa-trash-o'></span>
                                                  Delete
                                             </Link>
                                             &nbsp;
                                             <Link 
-                                                to={`/Admincategoryactionform/${category._id}/edit`} 
+                                                to={`/Adminprojectactionform/${project._id}/edit`} 
                                                 className='btn btn-info'
-                                                 onClick={() =>getCategory(category._id)}>
+                                                 onClick={() =>getProject(project._id)}
+                                                 >
                                                 <span className='fa fa-pencil-square-o'></span> Edit
                                             </Link>
                                         </td>
@@ -47,11 +53,11 @@ const Admincategorylist  = ({categories,pages,currentPage, deleteCategory , getC
                                 </tbody>
                             
                             </table>
-                                {pages> 1 && <Categorypaging pages={pages} currentPage={currentPage}/>
+                                {pages> 1 && <Projectpaging pages={pages} currentPage={currentPage}/>
                             }
                         </div>
         );
     }
     
 
-export default Admincategorylist;
+export default Adminprojectlist;

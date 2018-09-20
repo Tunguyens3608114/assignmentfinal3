@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const Categorypaging = ({currentPage, pages}) => {
+const Projectpaging = ({currentPage, pages}) => {
     let prevLink = parseInt(currentPage, 10) - 1;
     let nextLink = parseInt(currentPage, 10) + 1;
     return (
@@ -30,4 +30,4 @@ const Categorypaging = ({currentPage, pages}) => {
     )
 };
 
-export default Categorypaging;
+export default Projectpaging;
