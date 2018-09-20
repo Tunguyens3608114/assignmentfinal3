@@ -20,7 +20,7 @@ class Contact extends React.Component {
           <ul>
             <li>Developing: Estate portal</li>
             <li>Software: CSS, Bootstrap, visual studio code...</li>
-            <li>Server: http://rmit.chickenkiller.com:8080,,,, after deploying, i will this this</li>
+            <li>Server: https://rmitnumberone.herokuapp.com</li>
           </ul>
         </div>
       </div>
@@ -30,4 +30,20 @@ class Contact extends React.Component {
 export default Contact;
 
 
-
+// if (JSON.parse(localStorage.getItem('session')) ) {
+//   var username = JSON.parse(localStorage.getItem('session')).username;
+// }
+// var postSave = {
+//   id: this.state.id,
+//   title: this.state.name,
+//   price: this.state.nameError,
+//   area: this.state.nameProject,
+//   numberBedroom: this.state.numberBedroom,
+//   numberFloor: this.state.numberFloor,
+//   direction: this.state.direction,
+//   contactPhone: this.state.contactPhone,
+//   address: this.state.address,
+//   postDate: this.state.postDate,
+//   expiredDate: this.state.expiredDate,
+//   username: username,
+// }
