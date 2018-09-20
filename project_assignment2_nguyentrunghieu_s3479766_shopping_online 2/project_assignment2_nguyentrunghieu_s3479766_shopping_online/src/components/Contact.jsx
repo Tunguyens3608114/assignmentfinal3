@@ -10,6 +10,12 @@ class Contact extends React.Component {
           <br />
           <p><b>Name</b>: Nguyen Trung Hieu</p>
           <p><b>Student ID</b>: S3479766</p>
+          <b>---------------------------</b>
+          <p><b>Name</b>: Nguyen Xuan Hoang Phuc</p>
+          <p><b>Student ID</b>: S3595035</p>
+          <b>---------------------------</b>
+          <p><b>Name</b>: Tu Nguyen</p>
+          <p><b>Student ID</b>: S3608114</p>
           <p><b>Tasks:</b></p>
           <ul>
             <li>Developing: Estate portal</li>
